@@ -21,7 +21,7 @@ def recieve_data():
             pass
         
     date = datetime.datetime.now()
-    file = open(f"FileSystem/HSData/RequestProcessing/{date}.json", 'w')
+    file = open(f"RequestProcessing/{date}.json", 'w')
     file.write(new_data)
     file.close()
     return 'Data Recieved'
