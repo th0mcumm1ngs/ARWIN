@@ -26,7 +26,7 @@ def recieve_data():
     # Get the current date and time.
     date = datetime.datetime.now()
     # Create file and set the date and time as the name.
-    file = open(f"RequestProcessing/{date}.json", 'w')
+    file = open(f"DataInterchange/{date}.json", 'w')
     # Write the JSON data to the file.
     file.write(new_data)
     file.close()

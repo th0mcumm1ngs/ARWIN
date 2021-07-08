@@ -9,7 +9,7 @@ while run:
     # The output of the Flask Server and Telegram Bot are stored in .json files in the path 'FileSystem/HSData/RequestProcessing'.
     # The main.py file, this file, then filters through that directory and finds the .json files, retrieves the data in them and processes it accordingly.
 
-	files = os.listdir('FileSystem/HSData/RequestProcessing')
+	files = os.listdir('DataInterchange')
     
 	for file in files:
 		name, ext = os.path.splitext(file)
