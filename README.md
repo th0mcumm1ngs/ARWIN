@@ -1,16 +1,29 @@
 # HomeSystem
 
-This repo includes the code for the RPi Server that holds all of the HomeSystem data and is also used as a home page for the whole project with links to the other project repos.
+This repo includes the code for the RPi Server that holds all of the HomeSystem data.
 
-## To-Do's
-- [x] Telegram bot to send notifications to users.
-- [x] Telegram Bot to receive and respond to messages from users.
-- [x] Flask Server to receive HTTP POST requests.
-- [ ] Flask Server to receive HTTP GET requests.
-- [ ] All incoming requests from Flask and Telegram are sent to a main file for processing.
-- [ ] All outgoing requests and messages are sent from main.py. Example Scenario: HS_Bot.py file recieves a command request for the time, it then sends a request via the Data Interchange including the chat id that the request came from. main.py acts opon the request (Gets the date and time) and sends a message to the chat id obtained earlier. (This is an alternative to sending a request back to HS_Bot.py and that file sending a response.)
-- [ ] Ability to make HTTP requests.
-- [ ] Ability to save files to a directory tree.
+## How It Works
+In a nutshell, the system works by sending requests as JSON data across the **DataInterchange** folder.
 
-## Other Project Repositories
-(Coming in near future)
+### Example Scenario 1 - Telegram Bot for user interaction
+A user sends a command to the Telegram Bot. The bot then recognises the command, initiates the **send_request()** function and passes the parameters **command** and **chatID**. This function then adds one to the **reqID_counter** system-wide variable — This is used to ensure that every request ID is unique. Then, a dictionary is created with the request ID, command type and chatID from earlier. After that, the dictionary is turned into JSON<sup>1</sup> and packaged into a .json file. This is then sent to the **DataInterchange** folder. The **main.py** file constantly looks through the **DataInterchange** and parses the JSON data in the files. It then acts upon the command specified in the request and sends the output to the chatID obtained earlier.
+
+### Example Scenario 2 - Flask Request Receiver for computer generated requests
+The reciever.py file contains a Flask Server. This can recieve JSON data from other systems and devices - i.e. a Smart Screen, Smart Camera, Siri Shortcuts, etc. It then packages this JSON data and sends it to the DataInterchange in the same way as in Scenario 1.
+
+This has multiple applications including:
+- Using the Server as a private cloud to store data from other devices.
+- Handling requests from non-users<sup>2</sup>
+
+## Footnotes
+<sup>1</sup> An exapmle of this:
+
+    data = {
+        "reqID":reqID,
+        "command":command,
+        "chatID":chatID
+    }
+
+<sup>2</sup> Examples of this could be:
+- A Motion Sensor has detected motion and wants to alert the system.
+- A smart screen wishes to retrieve information from the **FileSystem**.
