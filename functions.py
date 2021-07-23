@@ -1,4 +1,4 @@
-import telegram, json
+import telegram, json, requests
 
 # Open all necessary JSON files.
 with open('data.json', 'r') as data_file:
@@ -19,3 +19,6 @@ def get_user_from_chatID(chatID):
 
     else:
         return "Guest"
+
+def make_request(endpoint_url, reqData):
+    requests.post(url = endpoint_url, json = reqData)
