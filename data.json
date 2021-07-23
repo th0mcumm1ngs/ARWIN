@@ -1,0 +1,25 @@
+{
+    "API_TOKENS": {
+        "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ"
+    },
+    "globalVariables": {
+        "reqID_counter": 60
+    },
+    "chatID_to_name": {
+        "1436572458": "Tom",
+        "1758992035": "Michelle",
+        "1918684706": "John"
+    },
+    "users": {
+        "tom": {
+            "chatID": "1436572458"
+        },
+        "michelle": {
+            "chatID": "1758992035"
+        },
+        "john": {
+            "chatID": "1918684706"
+        }
+    },
+    "alert_channel_id": "-1001482771944"
+}
