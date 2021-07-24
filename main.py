@@ -1,4 +1,4 @@
-import json, os, time, functions, datetime
+import json, os, time, functions, datetime, sys
 
 run = True
 
@@ -84,5 +84,9 @@ while run:
 			else:
 				os.remove(f'DataInterchange/{file}')
 	
-	except:
-		pass
+	except Exception as err:
+		functions.flagError(description = err)
+
+functions.flagError(description = "Loop in main.py has been broken causing program to quit. Maintenance needed immediately.")
+
+# Note: This error should never run as there is a try, except statement. In the event that it does the system can be restarted.

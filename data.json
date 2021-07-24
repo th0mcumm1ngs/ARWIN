@@ -3,7 +3,7 @@
         "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ"
     },
     "globalVariables": {
-        "reqID_counter": 0
+        "reqID_counter": 3
     },
     "chatID_to_name": {
         "1436572458": "Tom",
@@ -21,5 +21,6 @@
             "chatID": "1918684706"
         }
     },
+    
     "alert_channel_id": "-1001482771944"
 }
