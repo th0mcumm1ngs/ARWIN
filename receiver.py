@@ -29,6 +29,7 @@ def recieve_data():
     with open('data.json', 'w') as data_file:
         json.dump(HS_Data, data_file, indent = 4)
 
+    # Compile the data.
     data = {
         "reqType":"flask",
         "reqID":reqID,

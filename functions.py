@@ -13,7 +13,6 @@ def get_user_from_chatID(chatID):
     chatIDs = HS_Data["chatID_to_name"]
 
     # Checks if the Chat ID provided by the initiator is in the known Chat IDs
-
     if chatID in chatIDs:
         return HS_Data["chatID_to_name"][chatID]
 

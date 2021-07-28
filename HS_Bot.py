@@ -13,7 +13,6 @@ def send_request(command, chatID, args):
         HS_Data = json.load(data_file)
 
     # Update the variable by adding 1
-
     reqID = HS_Data["globalVariables"]["reqID_counter"] + 1
 
     HS_Data["globalVariables"]["reqID_counter"] = reqID
@@ -21,6 +20,7 @@ def send_request(command, chatID, args):
     with open('data.json', 'w') as data_file:
         json.dump(HS_Data, data_file, indent = 4)
 
+    # Compile the data.
     data = {
         "reqType":"telegram",
         "reqID":reqID,
@@ -46,6 +46,7 @@ def start(update, context):
 def announce(update, context):
     send_request(command = "announce", chatID = update.effective_chat.id, args = context.args)
 
+# Add the command handlers
 briefing_handler = CommandHandler('announce', announce)
 dispatcher.add_handler(briefing_handler)
 
