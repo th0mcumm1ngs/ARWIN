@@ -35,6 +35,10 @@ I prefer Option 2 as I've found Raspberry Pi's can be hard to work with.
 
 4. Unzip the file and move the HomeSystem folder to your Home Directory. <sup>4</sup>
 
+5. Open a new terminal and install all dependencies with the command:
+
+        pip3 install -r requirements.txt
+
 5. Open 4 terminals all in the HomeSystem Directory. In terminal 1 type `python3 main.py`, in terminal 2 type `python3 HS_Bot.py`, in terminal 3 type `python3 receiver.py` and in terminal 4 type `./ngrok http 5000`.
 
 ### Option 2
@@ -53,7 +57,7 @@ I prefer Option 2 as I've found Raspberry Pi's can be hard to work with.
 
 6. On your external computer, open a new terminal in the parent to the HomeSystem Directory and type:
     
-        croc send HomeSystem
+        croc send HomeSystem-X.X.X
     
     You will be given a code phrase. Note it down.
 
@@ -61,7 +65,31 @@ I prefer Option 2 as I've found Raspberry Pi's can be hard to work with.
 
         croc [Your code phrase]
 
-8. Still on your Raspberry Pi, open 4 terminals all in the HomeSystem Directory. In terminal 1 type `python3 main.py`, in terminal 2 type `python3 HS_Bot.py`, in terminal 3 type `python3 receiver.py` and in terminal 4 type `./ngrok http 5000`.
+8. Still on your Raspberry Pi, open a new terminal in the HomeSystem-X.X.X Directory and install all dependencies with the command:
+
+        pip3 install -r requirements.txt
+    
+    **DO NOT** close this terminal
+        
+9. Go to the [ngrok website](https://ngrok.com) and create an account. Copy your auth token. On your external computer open a new terminal and type:
+
+        croc send --text [YOUR AUTH TOKEN]
+
+10. In the terminal from Step 9 on the Raspberry Pi type:
+
+        croc [Your code phrase]
+
+    Your auth token should appear. Copy it
+
+11. In the same terminal type:
+
+        chmod +x ngrok
+
+    then
+
+        ./ngrok authtoken [YOUR AUTH TOKEN]
+
+12. Open 4 terminals all in the HomeSystem-X.X.X Directory. In terminal 1 type `python3 main.py`, in terminal 2 type `python3 HS_Bot.py`, in terminal 3 type `python3 receiver.py` and in terminal 4 type `./ngrok http 5000`.
 
 ## Footnotes
 <sup>1</sup> An exapmle of this:

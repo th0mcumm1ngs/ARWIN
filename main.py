@@ -87,13 +87,19 @@ while run:
 				elif data["reqType"] == "flask":
 					pass
 			
+			elif name == ".blank":
+				pass
 			# If the file wasn't JSON, it is deleted.
 			else:
 				os.remove(f'DataInterchange/{file}')
 	
 	except Exception as err:
-		# If there is an exception, send the details to the developer.
-		functions.flagError(description = err)
+		# Check if the error is a common error with no effect.
+		if str(err) == "Expecting value: line 1 column 1 (char 0)":
+			pass
+		else:
+			# If there is an exception, send the details to the developer.
+			functions.flagError(description = err)
 
 # This error should never run as there is a try, except statement. In the event that it does the system can be restarted.
 functions.flagError(description = "Loop in main.py has been broken causing program to quit. Maintenance needed immediately.")
