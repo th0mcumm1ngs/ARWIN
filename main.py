@@ -82,6 +82,38 @@ while run:
 								functions.send_message(recepient_id = data["chatID"], message = "Your message was sent successfully.")
 
 						announce()
+					
+					if data["command"] == "newstopwatch":
+						def new_stopwatch():
+							with open('data.json', 'r') as data_file:
+								HS_Data = json.load(data_file)
+
+							# Used to stitch the words passed as arguments together.
+							words = 0
+							name = ""
+
+							for i in data["args"]:
+								if words >= 1:
+									name += " " + i
+
+								else:
+									name += i
+								
+								words += 1
+
+							# Checks if a stopwatch with the same name already exists.
+							if name not in HS_Data["stopwatchesAndTimers"]:
+								HS_Data["stopwatchesAndTimers"][name] = str(datetime.datetime.now())
+
+								with open('data.json', 'w') as data_file:
+									json.dump(HS_Data, data_file, indent = 4)
+
+								functions.send_message(recepient_id = data["chatID"], message = f"Stopwatch successfully created. Type \"/checkstopwatch {name}\" to get the time since it was created.")
+
+							else:
+								functions.send_message(recepient_id = data["chatID"], message = "Sorry, a stopwatch with that name already exists.")
+
+						new_stopwatch()
 
 				# Checks if the request came from flask.
 				elif data["reqType"] == "flask":
