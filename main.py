@@ -111,7 +111,7 @@ while run:
 								with open('data.json', 'w') as data_file:
 									json.dump(HS_Data, data_file, indent = 4)
 
-								functions.send_message(recepient_id = data["chatID"], message = f"Stopwatch successfully created. Type \"/checkstopwatch {name}\" to get the time since it was created.")
+								functions.send_message(recepient_id = data["chatID"], message = f"Stopwatch successfully created. Type \"/checkstopwatch {name}\" to get the time since it was started.")
 
 							else:
 								functions.send_message(recepient_id = data["chatID"], message = "Sorry, a stopwatch with that name already exists.")
@@ -316,6 +316,38 @@ while run:
 								functions.send_message(recepient_id = data["chatID"], message = "Sorry, a stopwatch with that name doesn't exist.")
 
 						check_stopwatch()
+
+					## Handles the /resetstopwatch command.
+					if data["command"] == "resetstopwatch":
+						def reset_stopwatch():
+							with open('data.json', 'r') as data_file:
+								HS_Data = json.load(data_file)
+
+							# Used to stitch the words passed as arguments together.
+							words = 0
+							name = ""
+
+							for i in data["args"]:
+								if words >= 1:
+									name += " " + i
+
+								else:
+									name += i
+								
+								words += 1
+
+							if name in HS_Data["stopwatchesAndTimers"]:
+								HS_Data["stopwatchesAndTimers"][name] = str(datetime.datetime.now())
+
+								with open('data.json', 'w') as data_file:
+									json.dump(HS_Data, data_file, indent = 4)
+
+								functions.send_message(recepient_id = data["chatID"], message = f"Stopwatch successfully reset. Type \"/checkstopwatch {name}\" to get the time since it was started.")
+
+							else:
+								functions.send_message(recepient_id = data["chatID"], message = "Sorry, a stopwatch with that name doesn't exist.")
+
+						reset_stopwatch()
 
 				# Checks if the request came from flask.
 				elif data["reqType"] == "flask":
