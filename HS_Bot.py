@@ -55,6 +55,9 @@ def check_stopwatch(update, context):
 def reset_stopwatch(update, context):
     send_request(command = "resetstopwatch", chatID = update.effective_chat.id, args = context.args)
 
+def delete_stopwatch(update, context):
+    send_request(command = "deletestopwatch", chatID = update.effective_chat.id, args = context.args)
+
 # Add the command handlers
 briefing_handler = CommandHandler('announce', announce)
 dispatcher.add_handler(briefing_handler)
@@ -70,5 +73,8 @@ dispatcher.add_handler(check_stopwatch_handler)
 
 reset_stopwatch_handler = CommandHandler('resetstopwatch', reset_stopwatch)
 dispatcher.add_handler(reset_stopwatch_handler)
+
+delete_stopwatch_handler = CommandHandler('deletestopwatch', delete_stopwatch)
+dispatcher.add_handler(delete_stopwatch_handler)
 
 updater.start_polling()

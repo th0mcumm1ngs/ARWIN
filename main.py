@@ -349,6 +349,39 @@ while run:
 
 						reset_stopwatch()
 
+					## Handles the /deletestopwatch command.
+					if data["command"] == "deletestopwatch":
+						def delete_stopwatch():
+							with open('data.json', 'r') as data_file:
+								HS_Data = json.load(data_file)
+
+							# Used to stitch the words passed as arguments together.
+							words = 0
+							name = ""
+
+							for i in data["args"]:
+								if words >= 1:
+									name += " " + i
+
+								else:
+									name += i
+								
+								words += 1
+
+							# Checks if the stopwatch exists.
+							if name in HS_Data["stopwatchesAndTimers"]:
+								del HS_Data["stopwatchesAndTimers"][name]
+
+								with open('data.json', 'w') as data_file:
+									json.dump(HS_Data, data_file, indent = 4)
+
+								functions.send_message(recepient_id = data["chatID"], message = f"Stopwatch successfully deleted.")
+
+							else:
+								functions.send_message(recepient_id = data["chatID"], message = "Sorry, a stopwatch with that name doesn't exist.")
+
+						delete_stopwatch()
+
 				# Checks if the request came from flask.
 				elif data["reqType"] == "flask":
 					pass
