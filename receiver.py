@@ -6,6 +6,9 @@ from flask import request
 
 app = Flask(__name__)
 
+with open('data.json', 'r') as data_file:
+    HS_Data = json.load(data_file)
+
 # Simple ping. Used by othere HomeSystem Syetems to check the system is online.
 @app.route("/")
 def ping():
@@ -17,9 +20,6 @@ def recieve_data():
     req_data = request.get_json()
 
     # Get and update reqID_counter variable.
-    with open('data.json', 'r') as data_file:
-        HS_Data = json.load(data_file)
-
     # Update the variable by adding 1
 
     reqID = HS_Data["globalVariables"]["reqID_counter"] + 1

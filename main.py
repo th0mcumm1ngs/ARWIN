@@ -14,6 +14,9 @@ while run:
 		files = os.listdir('DataInterchange')
 		
 		for file in files:
+			# Import data.json file.
+			with open('data.json', 'r') as data_file:
+				HS_Data = json.load(data_file)
 			# Get the name and extention of the file
 			name, ext = os.path.splitext(file)
 			# Checks if the file is JSON data. Essentially checks whether a file was put there by accident or not.
@@ -28,9 +31,6 @@ while run:
 					# Handles the /help command.
 					if data["command"] == "help":
 						def help():
-							with open('data.json', 'r') as data_file:
-								HS_Data = json.load(data_file)
-
 							if len(data["args"]) == 1:
 								commands = [
 									'announce',
@@ -66,9 +66,6 @@ while run:
 					if data["command"] == "announce":
 						# Function used to keep variables isolated.
 						def announce():
-							with open('data.json', 'r') as data_file:
-								HS_Data = json.load(data_file)
-
 							# Set variable defaults
 							recipients = []
 							at_least_one_recipient = False
@@ -139,9 +136,6 @@ while run:
 					## Handles the /newstopwatch command.
 					if data["command"] == "newstopwatch":
 						def new_stopwatch():
-							with open('data.json', 'r') as data_file:
-								HS_Data = json.load(data_file)
-
 							if len(data["args"]) != 0:
 								# Used to stitch the words passed as arguments together.
 								words = 0
@@ -176,9 +170,6 @@ while run:
 					## Handles the /checkstopwatch command.
 					if data["command"] == "checkstopwatch":
 						def check_stopwatch():
-							with open('data.json', 'r') as data_file:
-								HS_Data = json.load(data_file)
-
 							if len(data["args"]) != 0:
 								# Used to stitch the words passed as arguments together.
 								words = 0
@@ -379,9 +370,6 @@ while run:
 					## Handles the /resetstopwatch command.
 					if data["command"] == "resetstopwatch":
 						def reset_stopwatch():
-							with open('data.json', 'r') as data_file:
-								HS_Data = json.load(data_file)
-
 							if len(data["args"]) != 0:
 								# Used to stitch the words passed as arguments together.
 								words = 0
@@ -415,9 +403,6 @@ while run:
 					## Handles the /deletestopwatch command.
 					if data["command"] == "deletestopwatch":
 						def delete_stopwatch():
-							with open('data.json', 'r') as data_file:
-								HS_Data = json.load(data_file)
-
 							if len(data["args"]) != 0:
 								# Used to stitch the words passed as arguments together.
 								words = 0

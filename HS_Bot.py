@@ -9,9 +9,6 @@ updater = Updater(token = HS_Data["API_TOKENS"]["telegram-token"])
 
 def send_request(command, chatID, args):
     # Get and update reqID_counter variable.
-    with open('data.json', 'r') as data_file:
-        HS_Data = json.load(data_file)
-
     # Update the variable by adding 1
     reqID = HS_Data["globalVariables"]["reqID_counter"] + 1
 
