@@ -75,16 +75,30 @@ while run:
 							given_message = ""
 							word = 0
 							error = False
+							recipients_done = False
+							everyone_passed = False
 
 							for i in data["args"]:
-								if i.lower() in HS_Data["users"]:
-									at_least_one_recipient = True
-									recipients.append(i.lower())
+								if recipients_done == False:
+									if i.lower() in HS_Data["users"]:
+										at_least_one_recipient = True
+										recipients.append(i.lower())
 
-								elif i.lower() == "everyone":
-									at_least_one_recipient = True
-									recipients.append(i.lower())
+									elif i.lower() == "everyone":
+										everyone_passed = True
+										at_least_one_recipient = True
+										recipients.append(i.lower())
 
+									else:
+										recipients_done = True
+										if word >= 1:
+											given_message += " " + i
+
+										else:
+											given_message += i
+										
+										word += 1
+								
 								else:
 									if word >= 1:
 										given_message += " " + i
