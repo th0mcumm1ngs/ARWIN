@@ -43,6 +43,9 @@ def start(update, context):
         data = file.read()
     context.bot.send_message(chat_id=update.effective_chat.id, text = data, parse_mode = 'HTML')
 
+def help(update, context):
+    send_request(command = "help", chatID = update.effective_chat.id, args = context.args)
+
 def announce(update, context):
     send_request(command = "announce", chatID = update.effective_chat.id, args = context.args)
 
@@ -64,6 +67,9 @@ dispatcher.add_handler(briefing_handler)
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
+
+help_handler = CommandHandler('help', help)
+dispatcher.add_handler(help_handler)
 
 new_stopwatch_handler = CommandHandler('newstopwatch', new_stopwatch)
 dispatcher.add_handler(new_stopwatch_handler)
