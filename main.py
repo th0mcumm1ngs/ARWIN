@@ -25,6 +25,43 @@ while run:
 				# Checks if the request came from telegram.
 				if data["reqType"] == "telegram":
 
+					# Handles the /help command.
+					if data["command"] == "help":
+						def help():
+							with open('data.json', 'r') as data_file:
+								HS_Data = json.load(data_file)
+
+							if len(data["args"]) == 1:
+								commands = [
+									'announce',
+									'newstopwatch',
+									'checkstopwatch',
+									'resetstopwatch',
+									'deletestopwatch'
+								]
+
+								command_name = data["args"][0]
+
+								if command_name in commands:
+									with open(f'HS_Bot_HTML_files/help/{command_name}.html') as file:
+										text = file.read()
+
+									functions.send_message(recepient_id = data["chatID"], message = text)
+
+								else:
+									functions.send_message(recepient_id = data["chatID"], message = "Sorry, that command doesn't exist.")
+
+							elif len(data["args"]) == 0:
+								with open('HS_Bot_HTML_files/help/help.html') as file:
+									text = file.read()
+									
+								functions.send_message(recepient_id = data["chatID"], message = text)
+
+							else:
+								functions.send_message(recepient_id = data["chatID"], message = "Sorry, there seems to have been an error. Make sure there is only one argument.")
+
+						help()
+
 					# Handles the /announce command.
 					if data["command"] == "announce":
 						# Function used to keep variables isolated.
