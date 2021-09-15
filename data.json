@@ -2,6 +2,7 @@
     "API_TOKENS": {
         "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ"
     },
+    "ENCRYPTION_KEY": "zkGQhssM-XGZC9MwK6PLpK-Gg-wB2hOW-N13ZqcsvgQ=",
     "globalVariables": {
         "reqID_counter": 0
     },
