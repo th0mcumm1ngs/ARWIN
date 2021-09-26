@@ -1,6 +1,6 @@
 {
     "API_TOKENS": {
-        "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ"
+        "telegram-token": "1814151751:AAEq-786Z5Y2pb1UQ-XVm5UnqBxLR2io1dA"
     },
     "ENCRYPTION_KEY": "zkGQhssM-XGZC9MwK6PLpK-Gg-wB2hOW-N13ZqcsvgQ=",
     "globalVariables": {
@@ -22,6 +22,6 @@
             "chatID": "1918684706"
         }
     },
-    "alert_channel_id": "-1001482771944",
+    "alert_channel_id": "-1001517049087",
     "stopwatchesAndTimers": {}
 }
