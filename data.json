@@ -1,9 +1,10 @@
 {
-    "API_TOKENS": {
-        "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ"
+    "TOKENS_AND_KEYS": {
+        "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ",
+        "adminPassword": "Otis2015"
     },
     "globalVariables": {
-        "reqID_counter": 0
+        "reqID_counter": 6
     },
     "chatID_to_name": {
         "1436572458": "Tom",
@@ -22,5 +23,9 @@
         }
     },
     "alert_channel_id": "-1001482771944",
-    "stopwatchesAndTimers": {}
+    "stopwatchesAndTimers": {},
+    "poweroff": {
+        "status": false,
+        "requestTime": ""
+    }
 }
