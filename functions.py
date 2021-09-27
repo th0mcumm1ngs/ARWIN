@@ -5,7 +5,7 @@ from cryptography.fernet import Fernet
 with open('data.json', 'r') as data_file:
     HS_Data = json.load(data_file)
 
-bot = telegram.Bot(token = HS_Data["API_TOKENS"]["telegram-token"])
+bot = telegram.Bot(token = HS_Data["TOKENS_AND_KEYS"]["telegram-token"])
 
 def send_message(recepient_id, message):
     bot.sendMessage(chat_id = recepient_id, text = message, parse_mode = "HTML")
