@@ -30,6 +30,25 @@ while run:
 
 				os.system('shutdown now -h')
 
+		## Restart Command
+		if HS_Data["restart"]["status"] == True:
+			time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+			formattedRequestTime = datetime.strptime(HS_Data["restart"]["requestTime"], '%Y-%m-%d %H:%M:%S')
+
+			# Check if it has been 60 seconds since the request was made.
+			if str(time_now) == str(formattedRequestTime + timedelta(seconds = 60)):
+
+				functions.send_message(recepient_id = HS_Data["alert_channel_id"], message = "The system has now restarted. You will be notified when the restart has completed.")
+
+				HS_Data["restart"]["status"] = False
+				HS_Data["restart"]["requestTime"] = ""
+
+				with open('data.json', 'w') as data_file:
+					json.dump(HS_Data, data_file, indent = 4)
+
+				os.system('shutdown now -r')
+
 	except Exception as err:
 		# Check if the error is a common error with no effect.
 		if str(err) == "Expecting value: line 1 column 1 (char 0)":
@@ -536,6 +555,59 @@ while run:
 								functions.send_message(recepient_id = data["chatID"], message = "Sorry, there seems to have been an error. If you need assistance with a command call '/help [COMMAND NAME]'.\n\nNote: Don’t include the '/' of the command that you need assistance with in your command.")
 						
 						power_off_system()
+
+					## Handles the /restart command.
+					if data["command"] == "restart":
+						def restart_system():
+							with open('data.json', 'r') as data_file:
+								HS_Data = json.load(data_file)
+
+							# This is for activating the power off sequence.
+							if len(data["args"]) == 1:
+								if data["args"][0] == HS_Data["TOKENS_AND_KEYS"]["adminPassword"]:
+
+									functions.send_message(recepient_id = data["chatID"], message = "The system will restart in 1 minute. Use the /restart false [adminPassword] to cancel this.")
+									functions.send_message(recepient_id = HS_Data["alert_channel_id"], message = "Hello. The system will be restarting in 1 minute.")
+
+									HS_Data["restart"]["status"] = True
+									HS_Data["restart"]["requestTime"] = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+									with open('data.json', 'w') as data_file:
+										json.dump(HS_Data, data_file, indent = 4)
+
+								else:
+									functions.send_message(recepient_id = data["chatID"], message = "The admin password is incorrect.")
+							
+							# This is for aborting the deactivation sequence.
+							elif len(data["args"]) == 2:
+								if data["args"][0] == "false":
+
+									if data["args"][1] == HS_Data["TOKENS_AND_KEYS"]["adminPassword"]:
+
+										if HS_Data["restart"]["status"] == True:
+
+											HS_Data["restart"]["status"] = False
+											HS_Data["restart"]["requestTime"] = ""
+
+											with open('data.json', 'w') as data_file:
+												json.dump(HS_Data, data_file, indent = 4)
+
+											functions.send_message(recepient_id = data["chatID"], message = "System restart has been aborted.")
+											functions.send_message(recepient_id = HS_Data["alert_channel_id"], message = "System restart has been aborted. It will no longer be restarted and will continue to function normally.")
+
+										else:
+											functions.send_message(recepient_id = data["chatID"], message = "System is not scheduled for restart.")
+
+									else:
+										functions.send_message(recepient_id = data["chatID"], message = "The admin password provided is incorrect.")
+
+								else:
+									functions.send_message(recepient_id = data["chatID"], message = "Sorry, there seems to have been an error. If you need assistance with a command call '/help [COMMAND NAME]'.\n\nNote: Don’t include the '/' of the command that you need assistance with in your command.")
+
+							else:
+								functions.send_message(recepient_id = data["chatID"], message = "Sorry, there seems to have been an error. If you need assistance with a command call '/help [COMMAND NAME]'.\n\nNote: Don’t include the '/' of the command that you need assistance with in your command.")
+						
+						restart_system()
 
 				# Checks if the request came from flask.
 				elif data["reqType"] == "flask":

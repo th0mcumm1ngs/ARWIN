@@ -66,6 +66,9 @@ def delete_stopwatch(update, context):
 def power_off_system(update, context):
     send_request(command = "poweroff", chatID = update.effective_chat.id, args = context.args)
 
+def restart_system(update, context):
+    send_request(command = "restart", chatID = update.effective_chat.id, args = context.args)
+
 # Add the command handlers
 briefing_handler = CommandHandler('announce', announce)
 dispatcher.add_handler(briefing_handler)
@@ -92,5 +95,8 @@ dispatcher.add_handler(delete_stopwatch_handler)
 
 power_off_system_handler = CommandHandler('poweroff', power_off_system)
 dispatcher.add_handler(power_off_system_handler)
+
+restart_system_handler = CommandHandler('restart', restart_system)
+dispatcher.add_handler(restart_system_handler)
 
 updater.start_polling()
