@@ -514,7 +514,7 @@ while run:
 								if data["args"][0] == HS_Data["TOKENS_AND_KEYS"]["adminPassword"]:
 
 									functions.send_message(recepient_id = data["chatID"], message = "The system will turn off in 1 minute. Use the /poweroff false [adminPassword] to cancel this.")
-									functions.send_message(recepient_id = HS_Data["alert_channel_id"], message = "Hello. The system will be temporarily deactivating in 1 minute. If a request is made before then, it will not be responded to until the system reactivates")
+									functions.send_message(recepient_id = HS_Data["alert_channel_id"], message = "Hello. The system will be temporarily deactivating in 1 minute.")
 
 									HS_Data["poweroff"]["status"] = True
 									HS_Data["poweroff"]["requestTime"] = str(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
@@ -562,7 +562,7 @@ while run:
 							with open('data.json', 'r') as data_file:
 								HS_Data = json.load(data_file)
 
-							# This is for activating the power off sequence.
+							# This is for activating the restart sequence.
 							if len(data["args"]) == 1:
 								if data["args"][0] == HS_Data["TOKENS_AND_KEYS"]["adminPassword"]:
 
@@ -578,7 +578,7 @@ while run:
 								else:
 									functions.send_message(recepient_id = data["chatID"], message = "The admin password is incorrect.")
 							
-							# This is for aborting the deactivation sequence.
+							# This is for aborting the restart sequence.
 							elif len(data["args"]) == 2:
 								if data["args"][0] == "false":
 
