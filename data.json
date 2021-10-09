@@ -1,7 +1,9 @@
 {
-    "API_TOKENS": {
-        "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ"
+    "TOKENS_AND_KEYS": {
+        "telegram-token": "1865588559:AAF37wEOTD2NG8LiHS0SF146ijmtvhhoujQ",
+        "adminPassword": "Otis2015"
     },
+    "ENCRYPTION_KEY": "zkGQhssM-XGZC9MwK6PLpK-Gg-wB2hOW-N13ZqcsvgQ=",
     "globalVariables": {
         "reqID_counter": 0
     },
@@ -22,5 +24,13 @@
         }
     },
     "alert_channel_id": "-1001482771944",
-    "stopwatchesAndTimers": {}
+    "stopwatchesAndTimers": {},
+    "poweroff": {
+        "status": false,
+        "requestTime": ""
+    },
+    "restart": {
+        "status": false,
+        "requestTime": ""
+    }
 }

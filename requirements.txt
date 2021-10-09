@@ -1,3 +1,6 @@
 python-telegram-bot
 flask
 python-dateutil
+cryptography
+requests
+datetime

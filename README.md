@@ -1,6 +1,6 @@
 # HomeSystem
 
-This repo includes the code for the RPi Server that holds all of the HomeSystem data.
+This repository includes the code for the RPi Server that holds all of the HomeSystem data.
 
 ## How It Works
 In a nutshell, the system works by sending requests as JSON data across the **DataInterchange** folder.
