@@ -91,7 +91,8 @@ while run:
 									'checkstopwatch',
 									'resetstopwatch',
 									'deletestopwatch',
-									'poweroff'
+									'poweroff',
+									'restart'
 								]
 
 								command_name = data["args"][0]
