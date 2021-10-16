@@ -73,7 +73,7 @@ while run:
 			if ext == ".json":
 				with open(f'DataInterchange/{file}', 'r') as data_file:
 					data = json.load(data_file)
-				os.rename(f'DataInterchange/{file}', f'FileSystem/Cache/requests/{file}')
+				os.rename(f'DataInterchange/{file}', f'FileSystem/bin/requests/{file}')
 
 				# Checks if the request came from telegram.
 				if data["reqType"] == "telegram":
