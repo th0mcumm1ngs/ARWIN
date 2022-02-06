@@ -3,6 +3,7 @@
 import datetime, json
 from flask import Flask
 from flask import request
+from waitress import serve
 
 app = Flask(__name__)
 
@@ -46,4 +47,4 @@ def recieve_data():
     return 'Data Recieved'
 
 if __name__ == "__main__":
-    app.run()
+    serve(app) # port 8080
