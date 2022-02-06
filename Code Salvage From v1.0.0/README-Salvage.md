@@ -1,0 +1,92 @@
+## How To Install
+This project was designed to be run on a Raspberry Pi. It may work on other systems but there is no guarantee.
+
+There are 2 ways to go about this:
+
+1. Install directly to your Raspberry Pi.
+
+2. Download to an external computer and send the files over to the Raspberry Pi.
+
+I prefer Option 2 as I've found Raspberry Pi's can be hard to work with.
+
+### Option 1
+1. Open Chromium on your Raspberry Pi and navigate to the [GitHub Repository](https://github.com/TomCummings07/HomeSystem).
+
+2. Under the Releases menu on the right-hand side, click on the latest release. <sup>3</sup>
+
+3. Scroll to the assets section and download either **Source Code.zip** or **Source Code.tar.gz**.
+
+4. Unzip the file and move the HomeSystem folder to your Home Directory. <sup>4</sup>
+
+5. Open a new terminal and install all dependencies with the command:
+
+        pip3 install -r requirements.txt
+
+5. Open 4 terminals all in the HomeSystem Directory. In terminal 1 type `python3 main.py`, in terminal 2 type `python3 HS_Bot.py`, in terminal 3 type `python3 receiver.py` and in terminal 4 type `./ngrok http 5000`.
+
+### Option 2
+1. On your external computer, open the [GitHub Repository](https://github.com/TomCummings07/HomeSystem) in your browser.
+
+2. Under the Releases menu on the right-hand side, click on the latest release. <sup>3</sup>
+
+3. Scroll to the assets section and download either **Source Code.zip** or **Source Code.tar.gz**.
+
+4. Unzip the file and put it anywhere. Leave it in the downloads folder if it is there automatically.
+
+5. Install [Croc](https://github.com/schollz/croc) on both your external computer and your Raspberry Pi:
+
+    1. Open a new terminal.
+    2. Type `curl https://getcroc.schollz.com | bash`
+
+6. On your external computer, open a new terminal in the parent to the HomeSystem Directory and type:
+    
+        croc send HomeSystem-X.X.X
+    
+    You will be given a code phrase. Note it down.
+
+7. On your Raspberry Pi, open a new terminal in your Home Directory<sup>4</sup> and type:
+
+        croc [Your code phrase]
+
+8. Still on your Raspberry Pi, open a new terminal in the HomeSystem-X.X.X Directory and install all dependencies with the command:
+
+        pip3 install -r requirements.txt
+    
+    **DO NOT** close this terminal
+        
+9. Go to the [ngrok website](https://ngrok.com) and create an account. Copy your auth token. On your external computer open a new terminal and type:
+
+        croc send --text [YOUR AUTH TOKEN]
+
+10. In the terminal from Step 9 on the Raspberry Pi type:
+
+        croc [Your code phrase]
+
+    Your auth token should appear. Copy it
+
+11. In the same terminal type:
+
+        chmod +x ngrok
+
+    then
+
+        ./ngrok authtoken [YOUR AUTH TOKEN]
+
+12. Open 4 terminals all in the HomeSystem-X.X.X Directory. In terminal 1 type `python3 main.py`, in terminal 2 type `python3 HS_Bot.py`, in terminal 3 type `python3 receiver.py` and in terminal 4 type `./ngrok http 5000`.
+
+## Footnotes
+<sup>1</sup> An exapmle of this:
+
+    data = {
+        "reqID":reqID,
+        "command":command,
+        "chatID":chatID
+    }
+
+<sup>2</sup> Examples of this could be:
+- A Motion Sensor has detected motion and wants to alert the system.
+- A smart screen wishes to retrieve information from the **FileSystem**.
+
+<sup>3</sup> Ensure to use the latest release and not just clone the repository. This is crucial since the repository may be unstable.
+
+<sup>4</sup> Usually called Pi unless you have changed it.
