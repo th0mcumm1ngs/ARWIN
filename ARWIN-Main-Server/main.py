@@ -9,7 +9,7 @@ while run:
 		with open('data.json', 'r') as data_file:
 			HS_Data = json.load(data_file)
 
-		# Recurring Actions.
+		# Recurring Actions
 
 	except Exception as err:
 		# Check if the error is a common error with no effect.
@@ -21,7 +21,7 @@ while run:
 
     # Request Processing System
     # How it works:
-    # The output of the Flask Server and Telegram Bot are stored in JSON files in the path 'DataInterchange'.
+    # The output of the Flask Server is stored in JSON files in the path 'DataInterchange'.
     # The main.py file, this file, then filters through that directory and finds the JSON files, moves them to the cache, retrieves the data in them and processes it accordingly.
 
 	# Try Except statement used to ensure that the loop doesnt break.
@@ -36,20 +36,12 @@ while run:
 				with open(f'DataInterchange/{file}', 'r') as data_file:
 					data = json.load(data_file)
 				os.rename(f'DataInterchange/{file}', f'FileSystem/bin/requests/{file}')
-
-				# Checks if the request came from telegram.
-				if data["reqType"] == "telegram":
-					pass
-
-				# Checks if the request came from flask.
-				elif data["reqType"] == "flask":
-					pass
 			
 			elif name == ".blank":
 				pass
 			# If the file wasn't JSON, it is deleted.
 			else:
-				os.remove(f'DataInterchange/{file}')
+				os.rename(f'DataInterchange/{file}', f'FileSystem/bin/unknown/{file}')
 	
 	except Exception as err:
 		# Check if the error is a common error with no effect.
@@ -60,4 +52,4 @@ while run:
 			functions.flagError(description = err)
 
 # This error should never run as there is a try, except statement. In the event that it does the system can be restarted.
-functions.flagError(description = "Loop in main.py has been broken causing program to quit. Maintenance needed immediately.")
+functions.flagError(description = "Loop in main.py has been broken causing the program to quit. Maintenance needed immediately.")

@@ -1,0 +1,12 @@
+
+{
+    "stopwatchesAndTimers": {},
+    "poweroff": {
+        "status": false,
+        "requestTime": ""
+    },
+    "restart": {
+        "status": false,
+        "requestTime": ""
+    }
+}
