@@ -1,36 +1,9 @@
 {
     "TOKENS_AND_KEYS": {
-        "telegram-token": "11814151751:AAEq-786Z5Y2pb1UQ-XVm5UnqBxLR2io1dA",
         "adminPassword": "Otis2015"
     },
     "ENCRYPTION_KEY": "zkGQhssM-XGZC9MwK6PLpK-Gg-wB2hOW-N13ZqcsvgQ=",
     "globalVariables": {
         "reqID_counter": 0
-    },
-    "chatID_to_name": {
-        "1436572458": "Tom",
-        "1758992035": "Michelle",
-        "1918684706": "John"
-    },
-    "users": {
-        "tom": {
-            "chatID": "1436572458"
-        },
-        "michelle": {
-            "chatID": "1758992035"
-        },
-        "john": {
-            "chatID": "1918684706"
-        }
-    },
-    "alert_channel_id": "-1001517049087",
-    "stopwatchesAndTimers": {},
-    "poweroff": {
-        "status": false,
-        "requestTime": ""
-    },
-    "restart": {
-        "status": false,
-        "requestTime": ""
     }
 }
