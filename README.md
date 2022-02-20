@@ -1,5 +1,7 @@
 # HomeSystem
 
+[![CodeQL](https://github.com/TomCummings07/ARWIN/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/TomCummings07/ARWIN/actions/workflows/codeql-analysis.yml)
+
 This repository includes the code for the RPi Server that holds all of the HomeSystem data.
 
 ## How It Works
