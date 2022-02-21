@@ -1,0 +1,21 @@
+{
+    "SERVERS": {
+        "main-server": {
+            "IP-address": null
+        },
+        "web-server":{
+            "IP-address":  null
+        },
+        "db-server": {
+            "IP-address": null
+        },
+        "file-server": {
+            "IP-address": null
+        }
+    },
+    "RECURRING_ACTIONS": {
+        "systemChecks": {
+            "lastPerformed": null
+        }
+    }
+}
