@@ -1,9 +1,0 @@
-{
-    "TOKENS_AND_KEYS": {
-        "adminPassword": "Otis2015"
-    },
-    "ENCRYPTION_KEY": "zkGQhssM-XGZC9MwK6PLpK-Gg-wB2hOW-N13ZqcsvgQ=",
-    "globalVariables": {
-        "reqID_counter": 0
-    }
-}
