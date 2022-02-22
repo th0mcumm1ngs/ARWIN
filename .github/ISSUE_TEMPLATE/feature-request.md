@@ -1,0 +1,19 @@
+---
+name: Feature Request
+about: Suggest an idea for this project
+title: Feature Request
+labels: enhancement
+assignees: ''
+
+---
+
+**Describe the main use of the feature you'd like us to add**
+A clear and concise description of what you would like.
+
+**Describe secondary alternative uses of this feature that you've considered**
+A clear and concise description of any alternative uses you've considered.
+
+**Additional context**
+Add any other context or screenshots about the feature request here.
+
+**If you have written any code already for this feature please upload it here.**
