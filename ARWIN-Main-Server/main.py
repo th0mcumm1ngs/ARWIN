@@ -1,45 +1,31 @@
 import functions
-from datetime import *
-import json
-import requests
+import json, os
 
-# Initialise variables.
-lastPerformedRecurringActions = None
+# Load the settings file.
+serverSettings = json.load(open('settings.json', 'r'))
 
-# Initialise the main loop.
+while True:
 
-run = True
-
-while run:
-
-    with open('ARWIN-Main-Server/data.json', 'r') as data_file:
-        dataFile = json.load(data_file)
+    dataFile = json.load(open('data.json', 'r'))
 
     # Try Except statement used to ensure that the loop doesnt break.
     try:
-        # Recurring Actions
-        ## Get the current date and time.
-        now = datetime.now()
-        ## Get the current date and time in a string format.
-        now_string = now.strftime("%Y-%m-%d %H:%M:%S")
-
-        # Checks if the recurring actions have been completed in the last minute.
-        if now.strftime("%H:%M") != lastPerformedRecurringActions:
-
-            lastPerformedRecurringActions = now.strftime("%H:%M")
-
-            # System Checks
-            if "00:00:00" in now_string:
-                functions.logLastPerformedRecurringAction(now_string, "systemChecks")
-                # Perform server maintenance. (Update checks, security scans, etc.)
-                for server in dataFile["SERVERS"]:
-                    if server != "main-server":
-                        serverAddress = dataFile["SERVERS"][server]["IP-address"]
-                    else:
-                        pass
-
         # Request Processing System
         # This is a recurring action that is used to check if there are any new files in the DataInterchange directory.
+
+        for file in os.listdir('DataInterchange'):
+            name, ext = os.path.splitext(file)
+            if ext == ".json":
+                dataFile = json.load(open(f'DataInterchange/{file}', 'r'))
+
+                # The different processes go here.
+                
+                os.rename(f'DataInterchange/{file}', f'bin/processed_requests/{file}')
+
+            elif name == ".blank":
+                pass
+            else:
+                os.rename(f'DataInterchange/{file}', f'bin/misplaced_files/{file}')
 
     except Exception as err:
         # Check if the error is a common error with no effect.

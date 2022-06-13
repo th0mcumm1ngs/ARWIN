@@ -1,4 +1,4 @@
-import json, requests, datetime
+import json, requests, telegram
 from cryptography.fernet import Fernet
 
 # Open data file.
@@ -12,7 +12,9 @@ def make_request(endpoint_url, reqData):
     requests.post(url = endpoint_url, json = reqData)
 
 def alertDev(content):
-    pass
+    token = '5375317355:AAHXHsu2XvUZkzzs3GUsGM5Ge-bRCUnv-aI'
+    bot = telegram.Bot(token = token)
+    bot.sendMessage(chat_id = '1436572458', text = content)
 
 def logLastPerformedRecurringAction(time, action):
     dataFile["RECURRING_ACTIONS"][action]["lastPerformed"] = time
