@@ -1,8 +1,10 @@
-# File is used to recieve incoming web requests.
-
-import datetime, json
 from flask import Flask, render_template, request
 from waitress import serve
+import datetime, json
+
+serverSettings = json.load(open('settings.json', 'r'))
+
+serverAddress = serverSettings["SERVER_ADDRESSES"]["web_server"]
 
 app = Flask(__name__)
 
@@ -12,11 +14,11 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
-# Background Processes
+# Server Processes
 
 @app.route("/ping")
 def ping():
     return "Connection Succesful"
 
 if __name__ == "__main__":
-    serve(app = app, host='127.0.0.1', port=8080)
+    serve(app = app, host = serverAddress, port = 8080)

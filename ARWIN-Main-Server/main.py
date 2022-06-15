@@ -1,55 +1,39 @@
-import json, os, functions, dateutil.relativedelta
-from datetime import *
+import functions
+import json, os
 
-run = True
+# Load the settings file.
+serverSettings = json.load(open('settings.json', 'r'))
 
-while run:
+while True:
 
-	try:
-		with open('data.json', 'r') as data_file:
-			HS_Data = json.load(data_file)
+    dataFile = json.load(open('data.json', 'r'))
 
-		# Recurring Actions
+    # Try Except statement used to ensure that the loop doesnt break.
+    try:
+        # Request Processing System
+        # This is a recurring action that is used to check if there are any new files in the DataInterchange directory.
 
-	except Exception as err:
-		# Check if the error is a common error with no effect.
-		if str(err) == "Expecting value: line 1 column 1 (char 0)":
-			pass
-		else:
-			# If there is an exception, send the details to the developer.
-			functions.flagError(description = err)
+        for file in os.listdir('DataInterchange'):
+            name, ext = os.path.splitext(file)
+            if ext == ".json":
+                dataFile = json.load(open(f'DataInterchange/{file}', 'r'))
 
-    # Request Processing System
-    # How it works:
-    # The output of the Flask Server is stored in JSON files in the path 'DataInterchange'.
-    # The main.py file, this file, then filters through that directory and finds the JSON files, moves them to the cache, retrieves the data in them and processes it accordingly.
+                # The different processes go here.
+                
+                os.rename(f'DataInterchange/{file}', f'bin/processed_requests/{file}')
 
-	# Try Except statement used to ensure that the loop doesnt break.
-	try:
-		files = os.listdir('DataInterchange')
-		
-		for file in files:
-			# Get the name and extention of the file
-			name, ext = os.path.splitext(file)
-			# Checks if the file is JSON data. Essentially checks whether a file was put there by accident or not.
-			if ext == ".json":
-				with open(f'DataInterchange/{file}', 'r') as data_file:
-					data = json.load(data_file)
-				os.rename(f'DataInterchange/{file}', f'FileSystem/bin/requests/{file}')
-			
-			elif name == ".blank":
-				pass
-			# If the file wasn't JSON, it is deleted.
-			else:
-				os.rename(f'DataInterchange/{file}', f'FileSystem/bin/unknown/{file}')
-	
-	except Exception as err:
-		# Check if the error is a common error with no effect.
-		if str(err) == "Expecting value: line 1 column 1 (char 0)":
-			pass
-		else:
-			# If there is an exception, send the details to the developer.
-			functions.flagError(description = err)
+            elif name == ".blank":
+                pass
+            else:
+                os.rename(f'DataInterchange/{file}', f'bin/misplaced_files/{file}')
 
-# This error should never run as there is a try, except statement. In the event that it does the system can be restarted.
-functions.flagError(description = "Loop in main.py has been broken causing the program to quit. Maintenance needed immediately.")
+    except Exception as err:
+        # Check if the error is a common error with no effect.
+        if str(err) in ["Expecting value: line 1 column 1 (char 0)"]:
+            pass
+        else:
+            # If there is an exception, send the details to the developer.
+            functions.alertDev(content = err)
+
+# This code should never run as there is a try-except statement. In the event that it does the system can be restarted.
+functions.alertDev(content = "Loop in main.py has been broken causing the program to quit. Maintenance needed immediately.")
