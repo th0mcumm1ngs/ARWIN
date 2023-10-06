@@ -1,8 +1,0 @@
-{
-    "SERVER_ADDRESSES": {
-        "main_server": "",
-        "web_server": "",
-        "database_server": "",
-        "file_server": ""
-    }
-}
