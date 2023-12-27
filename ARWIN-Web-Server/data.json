@@ -8,7 +8,8 @@
         "database_server": "",
         "file_server": ""
     },
-    "API_KEYS + SECRETS": {
+    "API_KEYS+SECRETS": {
+        "DDNS_PASSWORD": "",
         "GITHUB_API_KEY": "",
         "TELEGRAM": {
             "TELEGRAM_API_KEY": "",
