@@ -5,18 +5,13 @@
     "SERVER_ADDRESSES": {
         "main_server": "",
         "web_server": "",
-        "database_server": "",
         "file_server": ""
     },
-    "API_KEYS + SECRETS": {
-        "GITHUB_API_KEY": "",
+    "API_KEYS+SECRETS": {
+        "DDNS_PASSWORD": "",
         "TELEGRAM": {
             "TELEGRAM_API_KEY": "",
             "TELEGRAM_CHAT_ID": ""
-        },
-        "SSL": {
-            "CERTIFICATE_PATH": "",
-            "PRIVATE_KEY_PATH": ""
         }
     }
 }

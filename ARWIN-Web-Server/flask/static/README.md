@@ -1,0 +1,1 @@
+This folder is empty here but it will contain the static files (css, images, etc) for the web application. These can be seen [here](https://github.com/th0mcumm1ngs/thomcummings.dev/tree/main/static).
