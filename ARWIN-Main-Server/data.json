@@ -1,7 +1,16 @@
 {
-    "RECURRING_ACTIONS": {
-        "systemChecks": {
-            "lastPerformed": null
+    "GENERAL": {
+        "latest_known_version": ""
+    },
+    "SERVER_ADDRESSES": {
+        "main_server": "",
+        "web_server": "",
+        "file_server": ""
+    },
+    "API_KEYS+SECRETS": {
+        "TELEGRAM": {
+            "TELEGRAM_API_KEY": "",
+            "TELEGRAM_CHAT_ID": ""
         }
     }
 }
