@@ -19,4 +19,4 @@ def ping():
 if __name__ == "__main__":
     app.run(host = '0.0.0.0', debug = False)
 
-# tutorial: https://www.raspberrypi-spy.co.uk/2018/12/running-flask-under-nginx-raspberry-pi/
+# tutorial: https://www.raspberrypi-spy.co.uk/2018/12/running-flask-under-nginx-raspberry-pi/≈
